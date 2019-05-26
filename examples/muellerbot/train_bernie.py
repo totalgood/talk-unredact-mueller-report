@@ -11,7 +11,7 @@ import sys
 import os
 import re
 from io import StringIO
-from LSTMPeephole import LSTMPeephole
+# from LSTMPeephole import LSTMPeephole
 
 BATCH_SIZE = 2 ** 13
 
