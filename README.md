@@ -25,3 +25,11 @@ cd examples
 
 Then open your browser to http://localhost:8000
 
+## BERT: Language Modeling without the Hype
+
+Even though GPT-2 received a lot of press for its ability to successfully mimic particular human personalites in conversation, BERT can achieve similarly impressive results on many additional NL tasks like question answering and summarization. BERT outperforms humans at question answering by 2% (SQuAD v1.1 93.2% accuracy):
+
+> [BERT achieves] state-of-the-art results on eleven natural language processing tasks, including
+> pushing the GLUE benchmark to 80.4% (7.6% absolute improvement),
+> MultiNLI accuracy to 86.7 (5.6% absolute improvement) and the
+> SQuAD v1.1 question answering Test F1 to 93.2 (1.5% absolute improvement), outperforming human performance by 2.0%.
