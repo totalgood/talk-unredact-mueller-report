@@ -1,14 +1,15 @@
-# slides/
-Pygments==2.2.0
-LatexPDF
+-r slides/requirements.txt
 
-# examples/
-## running the flask "bernie-bot" app
-flask
+-r examples/muellerbot/requirements.txt
+# flask
+# -e git+https://github.com/totalgood/keras-bert.git@master#egg=keras_bert
 
-## BERT
--e git+https://github.com/totalgood/keras-bert.git@master#egg=keras_bert
+# -r examples/robot-bernie/requirements.txt
+# flask
+
 
 ## Django Admin talk code-samples by David Fischer at San Diego Python User Group May 2019
+# -r examples/djadmin/requirements.txt
 # Django==2.2.1
 # django-debug-toolbar==1.11
+
