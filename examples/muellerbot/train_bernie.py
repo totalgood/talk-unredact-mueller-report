@@ -91,7 +91,7 @@ def build_model(char_count, batch_size=BATCH_SIZE):
 
 
 def sample(a, temperature=.5):
-    print(f'a={a}, temperature={temperature}')
+    # print(f'a={a}, temperature={temperature}')
     if temperature == 0:
         return np.argmax(a)
     # helper function to sample an index from a probability array
@@ -99,7 +99,7 @@ def sample(a, temperature=.5):
     a = np.exp(a) / np.sum(np.exp(a))
     a = np.array([min(max(float(p), 0.), 1.) for p in a])
     a = a / a.sum()
-    print(f'a={a}, np.sum(a)={np.sum(a)}')
+    # print(f'a={a}, np.sum(a)={np.sum(a)}')
     return np.argmax(np.random.multinomial(1, a, 1))
 
 
