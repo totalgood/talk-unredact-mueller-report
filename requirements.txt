@@ -5,11 +5,11 @@
 # -e git+https://github.com/totalgood/keras-bert.git@master#egg=keras_bert
 
 # -r examples/robot-bernie/requirements.txt
-# flask
+## flask
 
 
 ## Django Admin talk code-samples by David Fischer at San Diego Python User Group May 2019
 # -r examples/djadmin/requirements.txt
-# Django==2.2.1
-# django-debug-toolbar==1.11
+## Django==2.2.1
+## django-debug-toolbar==1.11
 
