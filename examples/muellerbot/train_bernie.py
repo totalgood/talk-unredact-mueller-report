@@ -1,7 +1,7 @@
 from keras.models import Sequential
 from keras.layers.core import Dense, Activation, Dropout
 from keras.layers.recurrent import LSTM, GRU
-from keras.datasets.data_utils import get_file
+from keras.utils.data_utils import get_file
 from keras.optimizers import RMSprop
 import numpy as np
 import sys
@@ -62,7 +62,7 @@ def generate_training_data(text, char_indices, batch_size=BATCH_SIZE):
         X[i] = next(generators[i]).reshape(X[i].shape)
 
     indices_char = {v:k for (k,v) in list(char_indices.items())}
-    
+
     while True:
         for i in range(batch_size):
             y[i] = next(generators[i])
@@ -157,7 +157,7 @@ def main(run_name, text):
         new_weights = [layer.get_value() for layer in layers]
         #build_visualization(layers, old_weights, run_name, iteration)
         old_weights = new_weights
-        
+
         # Copy weights to a light-weight version of the model used for prediction
         for slow_layer, fast_layer in zip(model.layers, fast_model.layers):
             fast_layer.set_weights(slow_layer.get_weights())
