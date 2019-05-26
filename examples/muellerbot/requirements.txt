@@ -1,3 +1,8 @@
 flask
 
 -e git+https://github.com/totalgood/keras-bert.git@master#egg=keras_bert
+numpy
+scipy
+keras
+## gpu support used by Lawrence Neal
+# https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.8.0rc0-cp27-none-linux_x86_64.whl

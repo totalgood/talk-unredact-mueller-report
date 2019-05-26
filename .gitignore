@@ -1,3 +1,6 @@
+## pip install artifacts
+src/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
