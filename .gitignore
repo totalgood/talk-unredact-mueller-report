@@ -1,5 +1,7 @@
-## pip install artifacts
+## pip and python artifacts
 src/
+__pycache__
+.egg*
 
 ## Core latex/pdflatex auxiliary files:
 *.aux
