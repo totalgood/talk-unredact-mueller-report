@@ -1,6 +1,14 @@
-# Needed for building the slides
+# slides/
 Pygments==2.2.0
+LatexPDF
 
-# Needed for code samples
-Django==2.2.1
-django-debug-toolbar==1.11
+# examples/
+## running the flask "bernie-bot" app
+flask
+
+## BERT
+-e git+https://github.com/totalgood/keras-bert.git@master#egg=keras_bert
+
+## Django Admin talk code-samples by David Fischer at San Diego Python User Group May 2019
+# Django==2.2.1
+# django-debug-toolbar==1.11
