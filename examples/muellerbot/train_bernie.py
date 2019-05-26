@@ -15,6 +15,7 @@ from io import StringIO
 
 BATCH_SIZE = 2 ** 13
 
+
 def read_text_from_file(filename):
     text = open(filename).read()
     text = text.replace('%', ' percent ')
@@ -23,11 +24,13 @@ def read_text_from_file(filename):
     text = re.sub(r'[^a-zA-Z0-9\.\n\,\';\- ]+', '', text).lower()
     return text
 
+
 def make_char_lookup_table(text):
     chars = set(text)
     char_indices = dict((c, i) for i, c in enumerate(chars))
     indices_char = dict((i, c) for i, c in enumerate(chars))
     return char_indices, indices_char
+
 
 def generate_text_stream(text, offset=0):
     fp = StringIO(text)
@@ -39,6 +42,7 @@ def generate_text_stream(text, offset=0):
             continue
         yield val
 
+
 def onehot_encode(generator, char_indices):
     char_count = len(char_indices)
     for val in generator:
@@ -46,6 +50,7 @@ def onehot_encode(generator, char_indices):
         v = np.zeros(char_count)
         v[idx] = 1
         yield v
+
 
 def generate_training_data(text, char_indices, batch_size=BATCH_SIZE):
     char_count = len(char_indices)
@@ -69,6 +74,7 @@ def generate_training_data(text, char_indices, batch_size=BATCH_SIZE):
         yield (X, y)
         X[:,0,:] = y[:]
 
+
 def build_model(char_count, batch_size=BATCH_SIZE):
     model = Sequential()
     model.add(GRU(1024, return_sequences=True, batch_input_shape=(batch_size, 1, char_count), stateful=True))
@@ -83,13 +89,19 @@ def build_model(char_count, batch_size=BATCH_SIZE):
     model.compile(loss='categorical_crossentropy', optimizer=optimizer)
     return model
 
+
 def sample(a, temperature=.5):
+    print(f'a={a}, temperature={temperature}')
     if temperature == 0:
         return np.argmax(a)
     # helper function to sample an index from a probability array
     a = np.log(a) / temperature
     a = np.exp(a) / np.sum(np.exp(a))
+    a = np.array([min(max(float(p), 0.), 1.) for p in a])
+    a = a / a.sum()
+    print(f'a={a}, np.sum(a)={np.sum(a)}')
     return np.argmax(np.random.multinomial(1, a, 1))
+
 
 def predict(model, current_char, char_indices, indices_to_char, batch_size=BATCH_SIZE, temperature=0.2):
     # Ignore all but one value in the batch
@@ -155,7 +167,7 @@ def main(run_name, text):
         print(("Finished iteration {} after {:.2f} sec".format(iteration, time.time() - start_time)))
 
         new_weights = [layer.get_value() for layer in layers]
-        #build_visualization(layers, old_weights, run_name, iteration)
+        # build_visualization(layers, old_weights, run_name, iteration)
         old_weights = new_weights
 
         # Copy weights to a light-weight version of the model used for prediction
