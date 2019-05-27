@@ -1,3 +1,6 @@
+## keras models
+*.h5
+
 ## pip and python artifacts
 src/
 __pycache__
