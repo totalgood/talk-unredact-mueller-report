@@ -1,25 +1,20 @@
 \documentclass[aspectratio=169]{beamer}
 
-\title{Customizing the Django Admin}
-\author{David Fischer}
-\date{May 23, 2019}
-
+\title{Unredacting the Mueller Report}
+\author{Al Kari and Hobson Lane (Manceps)}
+\date{May 28, 2019}
 %% Beamer Themes
 \usetheme{Berlin}
 \usecolortheme{dove}
 \usefonttheme{serif}
-
 %% Remove beamer controls
 \beamertemplatenavigationsymbolsempty
-
-%% Packages
 % Pygments must be accessible to use minted and --shell-escape
 %  must be used with pdflatex
 \usepackage{minted}
 \usepackage{hyperref}
 \usepackage{multicol}
 \usepackage[font=scriptsize,labelformat=empty]{caption}
-
 
 \setbeamertemplate{footline}{
   \hspace*{.2cm}
@@ -34,14 +29,17 @@
 }
 
 
-\begin{document}
 
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide 1 (title)
 \maketitle
 
-
-% Fragile is required for syntax highlighting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide 2
+% fragile does syntax highlighting
 \begin{frame}[fragile]
-\frametitle{Some models (trimmed for brevity)}
+\frametitle{Bots are taking over our lives}
 
 \begin{multicols}{2}
 
@@ -63,14 +61,14 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField()
     author = models.ForeignKey(
-      Author, 
+      Author,
       on_delete=models.CASCADE,
     )
     categories = models.ManyToManyField(Category)
     body = models.TextField()
     publish_date = models.DateTimeField()
 \end{minted}
-} 
+}
 
 \columnbreak
 
@@ -92,9 +90,9 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = (
-      "title", 
-      "author", 
-      "post_categories", 
+      "title",
+      "author",
+      "post_categories",
       "publish_date",
     )
 \end{minted}
@@ -105,6 +103,8 @@ class PostAdmin(admin.ModelAdmin):
 \end{frame}
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide 3
 \begin{frame}
   \begin{figure}[p]
     \centering
@@ -114,6 +114,8 @@ class PostAdmin(admin.ModelAdmin):
 
 
 %% Filters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}[fragile]
 \frametitle{Basic Filters}
 
@@ -130,6 +132,8 @@ class PostAdmin(admin.ModelAdmin):
 \end{frame}
 
 %% More basic filters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}
   \begin{figure}[p]
     \centering
@@ -139,6 +143,8 @@ class PostAdmin(admin.ModelAdmin):
 
 
 %% More Advanced Filters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}[fragile]
 \frametitle{Advanced \& Custom Filters}
 
@@ -175,6 +181,8 @@ class PostAdmin(admin.ModelAdmin):
 \end{frame}
 
 %% More advanced filters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}
   \begin{figure}[p]
     \centering
@@ -184,6 +192,8 @@ class PostAdmin(admin.ModelAdmin):
 
 
 %% Date Hierarchies
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}[fragile]
 \frametitle{Filtering and Grouping by a Date Field}
 
@@ -195,8 +205,12 @@ class PostAdmin(admin.ModelAdmin):
     # ...
     date_hierarchy = "publish_date"
 \end{minted}
-} 
+}
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}
 \begin{figure}[p]
   \centering
@@ -207,6 +221,10 @@ class PostAdmin(admin.ModelAdmin):
 
 
 %% List Editable
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}[fragile]
 \frametitle{Editable Items in the List View}
 
@@ -218,8 +236,12 @@ class AuthorAdmin(admin.ModelAdmin):
     # ...
     list_editable = ("status",)
 \end{minted}
-} 
+}
 \end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}
 \begin{figure}[p]
   \centering
@@ -229,7 +251,8 @@ class AuthorAdmin(admin.ModelAdmin):
 \end{frame}
 
 
-%% Search
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Search
 \begin{frame}[fragile]
 \frametitle{Search}
 
@@ -241,8 +264,13 @@ class PostAdmin(admin.ModelAdmin):
     # ...
     search_fields = ("title", "body")
 \end{minted}
-} 
+}
 \end{frame}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Search screenshot
 \begin{frame}
 \begin{figure}[p]
   \centering
@@ -250,8 +278,14 @@ class PostAdmin(admin.ModelAdmin):
 \end{figure}
 
 \end{frame}
+% End Search
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}
 \frametitle{Resources}
   \begin{itemize}
@@ -262,6 +296,10 @@ class PostAdmin(admin.ModelAdmin):
 \end{frame}
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}
 \frametitle{Interested in more Django Admin talks?}
   \begin{itemize}
@@ -272,6 +310,10 @@ class PostAdmin(admin.ModelAdmin):
 \end{frame}
 
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% slide #
 \begin{frame}
 \frametitle{}
   {\huge Questions or comments?}
